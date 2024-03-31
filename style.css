@@ -1,0 +1,122 @@
+body, html {
+    height: 100%;
+}
+
+
+
+body {
+    width: 99vw;
+    height: 96vh;
+    background: url('./assets/cloud.jpg');
+    background-size: cover;
+}
+.web-name{
+    color:#efefef;
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgb(116, 201, 230), rgb(138, 129, 189));
+    max-width: 280px; /* max width for box*/
+}
+.card-bar{
+    width: 90%;
+    max-width: 470px;
+    /* background: linear-gradient(135deg, rgb(87, 189, 223), white); */
+    color: #fff;
+    margin: 25px auto 0; /* put this box in center */
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    border: 0;
+    outline: 1rem solid #efefef;
+    background: #fff;
+    color: #555;
+    padding: 10px 25px;
+    height: 40px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+.search button{
+    border: 0;
+    outline: 0;
+    outline: 1rem solid #efefef;
+    background: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer
+}
+.search button img{
+    height: 2rem;
+}
+/* Weather Icon */
+.weather{
+    align-items: center;
+    text-align: center;
+    color:#fff;
+
+}
+
+.weather-icon{
+    width: 150px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.weather h1{
+    font-size: 80px;
+    font-weight: 500;
+    margin-top: 20px;
+    
+}
+.weather h2{
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 250px;
+    margin-top: -100px;
+}
+.col{
+    display: flex;
+    align-items: left;
+    text-align: left;
+}
+.col image{
+    width: 400px;
+    height: 400px;
+    margin-right: 10px;
+
+}
+.humidity, .wind{
+    font-size: 28px;
+    margin-top: -6px;
+}
+
+/* if not fine then hide display */
+.weather {
+    display: none;
+}
+.error {
+    text-align: left;
+    margin-left: 16px;
+    font-size: 18px;
+    margin-top: 25px;
+    color: #555;
+    display: none;
+}

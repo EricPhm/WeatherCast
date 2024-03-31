@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="web-name">
+        <h1>Weather Now</h1>
+    </div>
+    <div class="card-bar">
+        <div class=search>
+            <input type="text" placeholder="enter city"
+            spellcheck="false">
+            <button><img src=./assets/searchIcon.png> </button>
+        </div>
+        <div class="error">
+            <p>Invalid city name</p>
+
+        </div>
+    </div>
+    <div class= weather>
+        <img src="./assets/cloud-clear.png" class="weather-icon">
+        <h1 class="temp"> __°C</h1>
+        <h2 class="city"> NewYork</h2>
+        <div class="details"> 
+            <div class="col">
+                <img src="./assets/humidity.jpg">
+                <div>
+                    <p class="humidity">Undefined</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="./assets/wind.jpg">
+                <div>
+                    <p class="wind">Undefined</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    // https://api.openweathermap.org/data/2.5/weather?q=vietnam&appid=a3996347b5ebf28dad44416b3888a315&units-metric
+const apiKey = "a3996347b5ebf28dad44416b3888a315";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city){
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);  //put apiKey request to, `` this is backtick
+    var data = await response.json();
+
+    // check if valid city name, if not throw message error
+    if(response.status == 404){
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+    } else{
+        
+        // ask for city data
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C"; // use map to get rounded temp
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+        if(data.weather[0].main == "Clear"){
+            weatherIcon.src = "./assets/cloud-clear.png";
+        }
+        if(data.weather[0].main == "Mists"){
+            weatherIcon.src = "./assets/mist.png";
+        }
+        if(data.weather[0].main == "Rain"){
+            weatherIcon.src = "./assets/rain.png";
+        }
+        if(data.weather[0].main == "Snow"){
+            weatherIcon.src = "./assets/snow.png";
+        }
+        
+        console.log(data);
+        
+        document.querySelector(".weather").style.display = "block";
+        document.querySelector(".error").style.display = "none";
+         
+        
+    }
+
+}
+searchBtn.addEventListener("click", () => {
+    checkWeather(searchBox.value);
+});
+checkWeather();
+
+</script>
+
+    <!-- <img class="img-back-ground" src="./assets/weatherImage.png" alt="ImageBackGround"> -->
+    
+</body>
+</html>
